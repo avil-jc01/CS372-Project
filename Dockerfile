@@ -1,13 +1,12 @@
 # syntax=docker/dockerfile:1
 
-FROM golang:1.16-alpine
+FROM golang
 
-WORKDIR /project
+WORKDIR  /go/src/github.com/avil-jc01/CS372-Project/
+COPY .  /go/src/github.com/avil-jc01/CS372-Project/
 
-COPY go.mod ./
 RUN go mod download
-
-COPY *.go ./
+RUN go get -v -t  .
 
 RUN go build -o /cs372app
 
