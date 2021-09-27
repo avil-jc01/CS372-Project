@@ -1,8 +1,7 @@
 package main
 
 import (
-    	"CS372-Project/handlers"
-    	"CS372-Project/utils"
+    	"github.com/avil-jc01/CS372-Project/handlers"
     	"database/sql"
     	"log"
     	_ "github.com/mattn/go-sqlite3"
@@ -11,7 +10,7 @@ import (
 
 func main() {
 	
-    	log.Println("D: Starting - Running CS372 App")
+    	log.Println("D: Starting - Running CS372 App on port 8080")
 	
     	//create db connection
     	database, err := sql.Open("sqlite3", "./budget-app.db")

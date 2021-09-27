@@ -5,8 +5,6 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 	"html/template"
 	"log"
-	"budget_app/utils"
-	"budget_app/models"
 	"net/http"
 )
 
@@ -19,20 +17,18 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
+	defer database.Close()
+
 	//building the html template
-	headPath := "templates/head.gohtml"
-	navTemplatePath := "templates/navbar.gohtml"
 	templatePath := "templates/home.gohtml"
 
-	t, err := template.ParseFiles(templatePath, navTemplatePath, headPath)
+	t, err := template.ParseFiles(templatePath)
 
 	if err != nil {
 		log.Printf("E: Error processing template")
 	}
 
-	payload := new(models.TemplatePayload)
 	//validate session - if authenticated user, display logged-in homepage
-	t.Execute(w, &payload)
+	t.Execute(w, nil)
 	
-	database.Close()
 }
