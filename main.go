@@ -1,6 +1,10 @@
 package main
+// golang programs begin with a package declaration - C++ -like
 
+
+// import statement for dependencies
 import (
+	// we are using github.com as the "root" of our project
     	"github.com/avil-jc01/CS372-Project/handlers"
     	"database/sql"
     	"log"
@@ -8,8 +12,10 @@ import (
     	"net/http"
 )
 
+// golang programs have main() as entrypoint - C -like
 func main() {
-	
+
+	// log prints to stdout - the docker container captures this output
     	log.Println("D: Starting - Running CS372 App on port 8080")
 	
     	//create db connection
@@ -18,18 +24,18 @@ func main() {
     		panic(err)
     	}
 
+	//close databse connection before main() exits
 	defer database.Close()
 	
-    	//creating a new http multiplexer
+    	//http requests are routed to the endpoint with a multiplexer
     	mux := http.NewServeMux()
 
-    	//add fileserver for static resources
-    	//fileserver := http.FileServer(http.Dir("./static/"))
 
-    	//adding handler functions for each handler
+    	//adding handler functions - the handler defines the GET/POST/etc. action
+	// see ./handlers/homehandler.go
     	hh := http.HandlerFunc(handlers.HomeHandler)
     	
-    	//use the mux to handle requests to pages
+    	//attach the handler to the multiplexer with the appropriate endpoint
     	mux.Handle("/", hh)
 
     	//start the webserver
