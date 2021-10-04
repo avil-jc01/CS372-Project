@@ -38,6 +38,13 @@ func main() {
     	//attach the handler to the multiplexer with the appropriate endpoint
     	mux.Handle("/", hh)
 
+	//some handlers we will probably be building in the future:
+	//mux.Handle("/view-autos", nil)
+	//mux.Handle("/add-auto", nil)
+	//mux.Handle("/update-auto", nil)
+	//mux.Handle("/login", nil)
+	
+
     	//start the webserver
     	http.ListenAndServe(":8080", mux)
 
