@@ -19,7 +19,7 @@ func main() {
     	log.Println("D: Starting - Running CS372 App on port 8080")
 	
     	//create db connection
-    	database, err := sql.Open("sqlite3", "./budget-app.db")
+    	database, err := sql.Open("sqlite3", "./cs372-app.db")
     	if err != nil {
     		panic(err)
     	}
@@ -30,21 +30,21 @@ func main() {
     	//http requests are routed to the endpoint with a multiplexer
     	mux := http.NewServeMux()
 
-
     	//adding handler functions - the handler defines the GET/POST/etc. action
 	// see ./handlers/homehandler.go
     	hh := http.HandlerFunc(handlers.HomeHandler)
-    	
-    	//attach the handler to the multiplexer with the appropriate endpoint
+    	aah := http.HandlerFunc(handlers.AddAutoHandler)
+
+	//attach the handler to the multiplexer with the appropriate endpoint
     	mux.Handle("/", hh)
+	mux.Handle("/add-auto", aah)
 
 	//some handlers we will probably be building in the future:
 	//mux.Handle("/view-autos", nil)
-	//mux.Handle("/add-auto", nil)
+
 	//mux.Handle("/update-auto", nil)
 	//mux.Handle("/login", nil)
 	
-
     	//start the webserver
     	http.ListenAndServe(":8080", mux)
 
