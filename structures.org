@@ -1,0 +1,19 @@
+#+TITLE: CS372 CarLot App Data Structures
+
+* Vehicle
+VIN - string
+year - int
+make - string
+model - string
+purchase price - int
+date of sale - date
+customer - customer
+
+* Customer
+Firstname - string
+Lastname - string
+Address - string
+City - string
+State - string
+ZIP - int
+
