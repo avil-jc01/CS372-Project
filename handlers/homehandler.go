@@ -19,10 +19,13 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	defer database.Close()
 
 	//building the html template - provide html template path
-	// see ./templates/home.gohtml
-	templatePath := "templates/home.gohtml"
+	//we add html head and navbar templates here
+	htmlHeadPath := "/templates/head.gohtml"
+	navBarPath := "/templates/navbar.gohtml"
+	templatePath := "/templates/home.gohtml"
 
-	t, err := template.ParseFiles(templatePath)
+	// add all the templates to the parsefiles arguments
+	t, err := template.ParseFiles(templatePath,htmlHeadPath,navBarPath)
 	if err != nil {
 		log.Printf("E: Error processing template")
 	}

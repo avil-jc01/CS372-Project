@@ -5,7 +5,7 @@ package main
 // import statement for dependencies
 import (
 	// we are using github.com as the "root" of our project
-    	"github.com/avil-jc01/CS372-Project/handlers"
+    	"CS372-Project/handlers"
     	"database/sql"
     	"log"
     	_ "github.com/mattn/go-sqlite3"

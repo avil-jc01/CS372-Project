@@ -1,4 +1,4 @@
-module github.com/avil-jc01/CS372-Project
+module CS372-Project
 
 go 1.17
 

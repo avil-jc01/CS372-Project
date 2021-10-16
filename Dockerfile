@@ -1,24 +1,21 @@
 # syntax=docker/dockerfile:1
 
-#We are using golang as our base image
-FROM golang
+FROM golang as go-build
+WORKDIR /usr/local/go/src/CS372-Project
 
-#Golang has a specific dir heirarchy - we declare that as our workdir
-WORKDIR  /usr/local/go/src/github.com/avil-jc01/CS372-Project/
-
-#Copy files from "here" (github repo dir) to the WORKDIR in the container
-COPY .  /usr/local/go/src/github.com/avil-jc01/CS372-Project/
-
-#Use Go Mod tool to download & get our dependencies
+COPY go.mod .
+COPY go.sum .
 RUN go mod download
-RUN go get -v -t  .
 
-#Build our linux elf - the binary file we run
-RUN GO111MODULE=on  CGO_ENABLED=0 GOOS=linux GOARCH=amd64  go build -o /cs372app
+COPY models/ models/
+COPY handlers/ handlers/
+COPY main.go .
 
-#Listen for http requests on port 8080
-EXPOSE 8080
+RUN cd /usr/local/go/src/CS372-Project && go build -v -o /cs372-project
 
-#When container is started, run this command (the binary from above)
-CMD [ "/cs372app" ]
+FROM ubuntu as server
 
+COPY --from=go-build /cs372-project /
+
+
+CMD ["/cs372-project"]

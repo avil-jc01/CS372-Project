@@ -19,9 +19,11 @@ func AddAutoHandler(w http.ResponseWriter, r *http.Request) {
 
 	defer database.Close()
 
-	templatePath := "templates/addauto.gohtml"
+	htmlHeadPath := "/templates/head.gohtml"
+	navBarPath := "/templates/navbar.gohtml"
+	templatePath := "/templates/addauto.gohtml"
 
-	t, err := template.ParseFiles(templatePath)
+	t, err := template.ParseFiles(templatePath,htmlHeadPath,navBarPath)
 
 	if err != nil {
 		log.Printf("E: Error processing template")
