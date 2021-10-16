@@ -1,22 +1,25 @@
 # syntax=docker/dockerfile:1
 
+#declaring our build container
 FROM golang as go-build
-ENV GO111MODULE=on
-WORKDIR /usr/local/go/src/CS372-Project
 
-COPY go.mod .
-COPY go.sum .
-RUN go mod download
+#setting our working dir inside container
+WORKDIR /cs372
 
-COPY models/ models/
-COPY handlers/ handlers/
-COPY main.go .
+#fetch our dependencies - these will cache
+RUN go get github.com/mattn/go-sqlite3
 
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -v -o /cs372-project
+#copy repo files into container
+COPY . .
 
+#build our binary 
+RUN  go build -v -o /cs372-project
+
+#using small ubuntu container for server
 FROM ubuntu as server
 
+#move the executable from the build container to the server container
 COPY --from=go-build /cs372-project /
 
-
+#run the binary on docker run command
 CMD ["/cs372-project"]
