@@ -22,10 +22,10 @@ to run the container, do:
 `docker run -it -p 8080:8080 -v ${PWD}/templates:/templates cs372project:latest`
 
 where the following: 
-> -it : make it an interactive terminal session	(docker stuff - just do this for this container) 
-> -p <host_port>:<ctr_port> : map the port on host_port to the container on ctr_port 
-> -v ${PWD}/templates:/templates : map this "volume" or directory (${PWD} the current working directory) to /templates inside the container 
-> cs372project:latest : the name of the container we built from the previous step
+> -it : make it an interactive terminal session	(docker stuff - just do this for this container)  
+> -p <host_port>:<ctr_port> : map the port on host_port to the container on ctr_port  
+> -v ${PWD}/templates:/templates : map this "volume" or directory (${PWD} the current working directory) to /templates inside the container  
+> cs372project:latest : the name of the container we built from the previous step  
 
 # Contributing
 
@@ -52,14 +52,15 @@ paste the suggested `git push` incantation instead.
 > git push --set-upstream origin <your-new-branch>
 > 
 >[CS372-Project]$ git push --set-upstream origin <your-new-branch>
->Enumerating objects: 4, done.
->Counting objects: 100% (4/4), done.
->Delta compression using up to 4 threads
->Compressing objects: 100% (3/3), done.
->Writing objects: 100% (3/3), 2.54 KiB | 2.54 MiB/s, done.
->Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
-> >message of successful git push>
-> >link to create pull request for your branch>
+>
+>Enumerating objects: 4, done.  
+>Counting objects: 100% (4/4), done.  
+>Delta compression using up to 4 threads  
+>Compressing objects: 100% (3/3), done.  
+>Writing objects: 100% (3/3), 2.54 KiB | 2.54 MiB/s, done.  
+>Total 3 (delta 1), reused 0 (delta 0), pack-reused 0  
+> >message of successful git push>  
+> >link to create pull request for your branch>  
 
 # Editing the frontend
 
