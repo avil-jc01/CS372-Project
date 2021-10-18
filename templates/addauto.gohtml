@@ -18,9 +18,48 @@
       </div>
       
       <div class="row">
-	<p>
-	This is the add auto page
-	</p>
+	<div>
+	  <form class="form" action="" method="post">
+	    <div class="form-label-group">
+	      <label for="vin">Vehicle Id Number (VIN): </label>
+	      <input type="text" name="vin" id="vin">
+	    </div>
+
+	    <div class="form-label-group">
+	      <label for="year">Model Year: </label>
+	      <input type="text" name="year" id="year">
+	    </div>
+
+	    <div class="form-label-group">
+	      <label for="make">Vehicle Make:  </label>
+	      <input type="text" name="make" id="make">
+	    </div>
+
+	    <div class="form-label-group">
+	      <label for="model">Vehicle Model:  </label>
+	      <input type="text" name="model" id="model">
+	    </div>
+
+	    <div class="form-label-group">
+	      <label for="price">Purchase Price:  </label>
+	      <input type="text" name="price" id="price">	    
+	    </div>
+
+	    <div class="form-label-group">
+	      <label for="date">Date of Sale:  </label>
+	      <input type="text" name="date" id="date">
+	    </div>
+
+	    <div class="form-label-group mt-2">
+	      <label for="customer">Customer:  </label>
+	      <select name="customer" id="customer">
+		<option value="">Select Customer</option>
+	      </select>
+	    </div> 
+
+	    <button class="btn btn-primary" type="submit">Add Automobile</button>
+	  </form>
+	</div>
       </div>
     </div>
   </body>
