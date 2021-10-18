@@ -21,5 +21,8 @@ FROM ubuntu as server
 #move the executable from the build container to the server container
 COPY --from=go-build /cs372-project /
 
+#copy templates over to ubuntu server container
+COPY templates/ /templates/
+
 #run the binary on docker run command
 CMD ["/cs372-project"]
