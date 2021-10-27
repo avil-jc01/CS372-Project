@@ -2,10 +2,10 @@ package models
 
 type Vehicle struct {
 	VIN           string
-	year          int
-	make          string
-	model         string
-	purchasePrice int
-	dateOfSale    date
-	customer      customer
+	Year          int
+	Make          string
+	Model         string
+	PurchasePrice float32
+	DateOfSale    string
+	Customer      Customer
 }

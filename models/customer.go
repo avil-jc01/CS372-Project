@@ -1,6 +1,6 @@
 package models
 
-type customer struct {
+type Customer struct {
 	firstName string
 	lastName  string
 	address   string
