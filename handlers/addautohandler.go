@@ -8,7 +8,6 @@ import (
 	"net/http"
 )
 
-
 func AddAutoHandler(w http.ResponseWriter, r *http.Request) {
 
 	database, err := sql.Open("sqlite3", "./cs372-app.db")
@@ -23,7 +22,7 @@ func AddAutoHandler(w http.ResponseWriter, r *http.Request) {
 	navBarPath := "/templates/navbar.gohtml"
 	templatePath := "/templates/addauto.gohtml"
 
-	t, err := template.ParseFiles(templatePath,htmlHeadPath,navBarPath)
+	t, err := template.ParseFiles(templatePath, htmlHeadPath, navBarPath)
 
 	if err != nil {
 		log.Printf("E: Error processing template")
