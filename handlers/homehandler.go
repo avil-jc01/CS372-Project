@@ -8,7 +8,6 @@ import (
 	"net/http"
 )
 
-
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 
 	database, err := sql.Open("sqlite3", "./budget-app.db")
@@ -25,7 +24,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	templatePath := "/templates/home.gohtml"
 
 	// add all the templates to the parsefiles arguments
-	t, err := template.ParseFiles(templatePath,htmlHeadPath,navBarPath)
+	t, err := template.ParseFiles(templatePath, htmlHeadPath, navBarPath)
 	if err != nil {
 		log.Printf("E: Error processing template")
 	}
@@ -34,5 +33,5 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	// we can pass golang structs/objects to the template
 	// in this case we pass nil since we don't have one to pass
 	t.Execute(w, nil)
-	
+
 }

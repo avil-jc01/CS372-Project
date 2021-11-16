@@ -1,10 +1,11 @@
 package models
 
-type customer struct {
-	firstName string
-	lastName  string
-	address   string
-	city      string
-	state     string
-	zip       int
+type Customer struct {
+	CustomerId int
+	FirstName  string
+	LastName   string
+	Address    string
+	City       string
+	State      string
+	Zip        int
 }
