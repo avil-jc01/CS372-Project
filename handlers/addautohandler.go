@@ -68,7 +68,7 @@ func AddAutoHandler(w http.ResponseWriter, r *http.Request) {
 			Year:          int(Year),
 			Make:          r.FormValue("make"),
 			Model:         r.FormValue("model"),
-			PurchasePrice: float32(PurchasePrice),
+			PurchasePrice: int(PurchasePrice),
 			DateOfSale:    DateOfSale.String(),
 		}
 		fmt.Println(newVehicle)
