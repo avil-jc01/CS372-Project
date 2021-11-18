@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"CS372-Project/models"
+	"CS372-Project/utils"
 	"database/sql"
 	"fmt"
 	"html/template"
@@ -71,6 +72,12 @@ func AddAutoHandler(w http.ResponseWriter, r *http.Request) {
 			PurchasePrice: int(PurchasePrice),
 			DateOfSale:    DateOfSale.String(),
 		}
-		fmt.Println(newVehicle)
+		err = utils.InsterAuto(newVehicle, database)
+		if err != nil {
+			log.Printf("E: Error inserting customer", newVehicle)
+			log.Printf(err.Error())
+		}
+
+		http.Redirect(w, r, "/", http.StatusFound)
 	}
 }

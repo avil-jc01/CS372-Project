@@ -1,10 +1,11 @@
 package utils
 
 import (
-	"database/sql"
 	"CS372-Project/models"
-	_ "github.com/mattn/go-sqlite3"
+	"database/sql"
 	"log"
+
+	_ "github.com/mattn/go-sqlite3"
 )
 
 func InsertCustomer(c models.Customer, d *sql.DB) error {
@@ -19,6 +20,24 @@ func InsertCustomer(c models.Customer, d *sql.DB) error {
 		panic(err)
 	}
 	log.Printf("D: Added %s %s to customers table", c.FirstName, c.LastName)
+	return nil
+
+}
+
+func InsterAuto(v models.Vehicle, d *sql.DB) error {
+	statement, err := d.Prepare("INSERT INTO vehicles ( vin, year, make, model, purchase_price, date_of_sale, customer_id) VALUES ( ?, ?, ?, ?, ?, ?, ?)")
+	if err != nil {
+		return err
+	}
+	result, err := statement.Exec(v.VIN, v.Year, v.Make, v.Model, v.PurchasePrice, v.DateOfSale, v.CustomerId)
+	if err != nil {
+		panic(err)
+	}
+	res, err := result.LastInsertId()
+	if err != nil {
+		panic(err)
+	}
+	log.Printf("D: Added %d  to vehicles table", res)
 	return nil
 
 }
