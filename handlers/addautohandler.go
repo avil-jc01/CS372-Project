@@ -22,48 +22,55 @@ func AddAutoHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	defer database.Close()
+	if r.Method == "GET" {
+		log.Printf("D: HTTP GET on /add-auto")
+		htmlHeadPath := "/templates/head.gohtml"
+		navBarPath := "/templates/navbar.gohtml"
+		templatePath := "/templates/addauto.gohtml"
 
-	htmlHeadPath := "/templates/head.gohtml"
-	navBarPath := "/templates/navbar.gohtml"
-	templatePath := "/templates/addauto.gohtml"
-
-	t, err := template.ParseFiles(templatePath, htmlHeadPath, navBarPath)
-	if err != nil {
-		panic(err)
-	}
-
-	if r.Method != http.MethodPost {
+		t, err := template.ParseFiles(templatePath, htmlHeadPath, navBarPath)
+		if err != nil {
+			log.Printf("E: Error processing template")
+		}
 		t.Execute(w, nil)
-		return
 	}
-	Year, err := strconv.ParseInt(r.FormValue("year"), 10, 32)
-	if err != nil {
-		panic(err)
-	}
-	PurchasePrice, err := strconv.ParseFloat(r.FormValue("price"), 32)
-	if err != nil {
-		panic(err)
-	}
+	if r.Method == "POST" {
+		log.Printf("D: HTTP POST on /add-customer")
+		r.ParseForm()
+		var err error
+		var DateOfSale time.Time
 
-	const (
-		layoutISO = "2006-01-02"
-	)
-	date := r.FormValue("date")
-	DateOfSale, err := time.Parse(layoutISO, date)
-	fmt.Println(DateOfSale)
-	newVehicle := models.Vehicle{
-		VIN:           r.FormValue("vin"),
-		Year:          int(Year),
-		Make:          r.FormValue("make"),
-		Model:         r.FormValue("model"),
-		PurchasePrice: float32(PurchasePrice),
-		DateOfSale:    DateOfSale.String(),
-	}
-	fmt.Println(newVehicle)
+		_, has_param := r.Form["date"]
+		if has_param {
+			const (
+				layoutISO = "2006-01-02"
+			)
+			date := r.FormValue("date")
+			DateOfSale, err = time.Parse(layoutISO, date)
 
-	if err != nil {
-		log.Printf("E: Error processing template")
-	}
+			if err != nil {
+				panic(err)
+			}
 
-	t.Execute(w, nil)
+		}
+		Year, err := strconv.ParseInt(r.FormValue("year"), 10, 32)
+		if err != nil {
+			panic(err)
+		}
+		PurchasePrice, err := strconv.ParseFloat(r.FormValue("price"), 32)
+		if err != nil {
+			panic(err)
+		}
+
+		fmt.Println(DateOfSale)
+		newVehicle := models.Vehicle{
+			VIN:           r.FormValue("vin"),
+			Year:          int(Year),
+			Make:          r.FormValue("make"),
+			Model:         r.FormValue("model"),
+			PurchasePrice: float32(PurchasePrice),
+			DateOfSale:    DateOfSale.String(),
+		}
+		fmt.Println(newVehicle)
+	}
 }
