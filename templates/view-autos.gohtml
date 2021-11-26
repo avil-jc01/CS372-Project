@@ -2,7 +2,7 @@
 <html>
   <head>
     {{template "html_head"}}
-    <title>New Customer - Add Customer</title>
+    <title>View Automobiles</title>
     
   </head>
   
@@ -20,13 +20,23 @@
       
       <div class="row">
 
-	{{range .}}
-	<div class="">
-	  {{.VehicleId}}
-	  <br>
-	  {{.Year}} - {{.Make}} - {{.Model}}
+	<div class="card-columns mx-auto">
+	  {{range .}}
+	  <div class="card" style="width: 20rem;">
+	    <div class="card-header">
+	      {{.VIN}}
+	    </div>
+	    <div class="card-body">
+	      <div class="mb-3">
+	      {{.Year}} - {{.Make}} {{.Model}}
+	      </div>
+	      <a class="card-link" href="">Paperwork</a>  
+	    </div>
 	  </div>
 	  {{end}}
+	  
+
+	</div>
 	
       </div>
   </body>
