@@ -16,8 +16,12 @@
 	  Auto-Form Filler - Add Auto
 	</h1>
       </div>
+
+      <div class="row m-3 p-2">
+	This is the add auto page. If you haven't already, be sure to add the customer first, so that they appear below.
+      </div>
       
-      <div class="row justify-content-center">
+      <div class="row justify-content-center m-3 p-2">
 	<div>
 	  <form class="form" action="" method="post">
 	    <div class="form-label-group">
@@ -54,10 +58,13 @@
 	      <label for="customer">Customer:  </label>
 	      <select name="customer" id="customer">
 		<option value="">Select Customer</option>
+		{{range .}}
+		<option value="{{.CustomerId}}">{{.FirstName}} {{.LastName}}</option>
+		{{end}}
 	      </select>
 	    </div> 
 
-	    <button class="btn btn-primary" type="submit">Add Automobile</button>
+	    <button class="btn btn-primary mt-2" type="submit">Add Automobile</button>
 	  </form>
 	</div>
       </div>

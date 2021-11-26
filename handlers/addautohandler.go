@@ -33,7 +33,10 @@ func AddAutoHandler(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Printf("E: Error processing template")
 		}
-		t.Execute(w, nil)
+
+		dbCustomers := utils.SelectAllCustomers(database)
+		
+		t.Execute(w, &dbCustomers)
 	}
 	if r.Method == "POST" {
 		log.Printf("D: HTTP POST on /add-customer")
@@ -72,7 +75,7 @@ func AddAutoHandler(w http.ResponseWriter, r *http.Request) {
 			PurchasePrice: int(PurchasePrice),
 			DateOfSale:    DateOfSale.String(),
 		}
-		err = utils.InsterAuto(newVehicle, database)
+		err = utils.InsertAuto(newVehicle, database)
 		if err != nil {
 			log.Printf("E: Error inserting customer", newVehicle)
 			log.Printf(err.Error())

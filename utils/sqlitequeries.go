@@ -8,6 +8,71 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
+func SelectAllCustomers(d *sql.DB) []models.Customer {
+	var dbCustomers []models.Customer
+
+	resultRows, err := d.Query("SELECT * FROM customers")
+	if err != nil {
+		panic(err)
+	}
+
+	var cid, zip int
+	var fn, ln, addr, city, st string
+
+	for resultRows.Next() {
+		resultRows.Scan(&cid,&fn,&ln,&addr,&city,&st,&zip)
+
+		resultCustomer := models.Customer{
+			CustomerId: cid,
+			FirstName: fn,
+			LastName: ln,
+			Address: addr,
+			City: city,
+			State: st,
+			Zip: zip,
+		}
+
+		dbCustomers = append(dbCustomers, resultCustomer)
+		
+	}
+
+	return dbCustomers
+	
+}
+
+func SelectAllAutos(d *sql.DB) []models.Vehicle {
+	var dbVehicles []models.Vehicle
+
+	resultRows, err := d.Query("SELECT * FROM vehicles")
+	if err != nil {
+		panic(err)
+	}
+
+	var vid, yr, price, cid int
+	var vin, make, model, date string
+
+	for resultRows.Next() {
+		resultRows.Scan(&vid,&vin,&yr,&make,&model,&price,&date,&cid)
+		readVehicle := models.Vehicle{
+			VehicleId: vid,
+			VIN: vin,
+			Year: yr,
+			Make: make,
+			Model: model,
+			PurchasePrice: price,
+			DateOfSale: date,
+			CustomerId: cid,
+		}
+
+		dbVehicles = append(dbVehicles, readVehicle)
+	}
+
+	return dbVehicles
+	
+	
+	
+}
+
 func InsertCustomer(c models.Customer, d *sql.DB) error {
 	statement, err := d.Prepare("INSERT INTO customers (firstname, lastname, address, city, state, zip) VALUES (?, ?, ?, ?, ?, ?)")
 	if err != nil {
@@ -24,7 +89,7 @@ func InsertCustomer(c models.Customer, d *sql.DB) error {
 
 }
 
-func InsterAuto(v models.Vehicle, d *sql.DB) error {
+func InsertAuto(v models.Vehicle, d *sql.DB) error {
 	statement, err := d.Prepare("INSERT INTO vehicles ( vin, year, make, model, purchase_price, date_of_sale, customer_id) VALUES ( ?, ?, ?, ?, ?, ?, ?)")
 	if err != nil {
 		return err

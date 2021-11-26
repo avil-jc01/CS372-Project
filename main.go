@@ -1,7 +1,5 @@
 package main
 
-//comment
-
 import (
 	"CS372-Project/handlers"
 	"CS372-Project/utils"
@@ -11,8 +9,6 @@ import (
 	"net/http"
 )
 
-
-//small change
 func main() {
 
 	log.Println("D: Starting - Running CS372 App on port 8080")
@@ -38,10 +34,12 @@ func main() {
 	hh := http.HandlerFunc(handlers.HomeHandler)
 	aah := http.HandlerFunc(handlers.AddAutoHandler)
 	ach := http.HandlerFunc(handlers.AddCustomerHandler)
+	vah := http.HandlerFunc(handlers.ViewAutosHandler)
 
 	mux.Handle("/", hh)
 	mux.Handle("/add-auto", aah)
 	mux.Handle("/add-customer", ach)
+	mux.Handle("/view-autos", vah)
 
 	//start the webserver
 	http.ListenAndServe(":8080", mux)

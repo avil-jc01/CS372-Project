@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    {{template "html_head"}}
+    <title>View Automobiles</title>
+    
+  </head>
+  
+  <body style="background-color: #f0f0f0;">
+    
+    {{template "navbar"}}
+    
+    <div class="container">
+
+      <div id="page-title" class="text-center mt-4">
+	<h1>
+          View Autos
+	</h1>
+      </div>
+      
+      <div class="row">
+
+	<div class="card-columns mx-auto">
+	  {{range .}}
+	  <div class="card" style="width: 20rem;">
+	    <div class="card-header">
+	      {{.VIN}}
+	    </div>
+	    <div class="card-body">
+	      <div class="mb-3">
+	      {{.Year}} - {{.Make}} {{.Model}}
+	      </div>
+	      <a class="card-link" href="">Paperwork</a>  
+	    </div>
+	  </div>
+	  {{end}}
+	  
+
+	</div>
+	
+      </div>
+  </body>
+</html>

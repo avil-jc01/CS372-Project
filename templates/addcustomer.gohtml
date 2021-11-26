@@ -10,55 +10,53 @@
     
     {{template "navbar"}}
     
-    <div class="container">
+    <div class="container p-1">
       <div id="page-title" class="text-center mt-4">
 	<h1>
         New Customer
 	</h1>
       </div>
       
-      <div class="row">
+      <div class="row m-3 p-2">
 
 	<p>
 	This is the add a new customer.
 	</p>
       </div>
-    </div>
-  </body>
-</html>
-	<div class="row justify-content-center">
+      
+	<div class="row justify-content-center m-3 p-2">
 	  <form class="form" action="/add-customer" method="post">
-	    <div class="form-label-group">
+	    <div class="form-label-group mb-1">
 	      <label for="first_name">First Name: </label>
 	      <input type="text" name="first_name" id="first_name" class="form-control">
 	    </div>
 
-	    <div class="form-label-group">
+	    <div class="form-label-group mb-1">
 	      <label for="last_name">Last Name: </label>
 	      <input type="text" name="last_name" id="last_name" class="form-control">
 	    </div>
 
-	    <div class="form-label-group">
+	    <div class="form-label-group mb-1">
 	      <label for="address">Street Address: </label>
 	      <input type="text" name="address" id="address" class="form-control">
 	    </div>
 
-	    <div class="form-label-group">
-	      <label for="city">City:  </label>
+	    <div class="form-label-group mb-1">
+	      <label for="city">City: </label>
 	      <input type="text" name="city" id="city" class="form-control">
 	    </div>
 
-	    <div class="form-label-group">
-	      <label for="state">State:  </label>
+	    <div class="form-label-group mb-1">
+	      <label for="state">State: </label>
 	      <input type="text" name="state" id="state" class="form-control">	    
 	    </div>
 
-	    <div class="form-label-group">
-	      <label for="zip">Zip Code:  </label>
+	    <div class="form-label-group mb-1">
+	      <label for="zip">Zip Code:</label>
 	      <input type="text" name="zip" id="zip" class="form-control">
 	    </div>
 
-	    <button class="btn btn-primary mt-3" type="submit">Add Customer</button>
+	    <button class="btn btn-primary m-3" type="submit">Add Customer</button>
 	  </form>
 	</div>
 	
