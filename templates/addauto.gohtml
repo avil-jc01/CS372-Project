@@ -54,6 +54,9 @@
 	      <label for="customer">Customer:  </label>
 	      <select name="customer" id="customer">
 		<option value="">Select Customer</option>
+		{{range .}}
+		<option value="{{.CustomerId}}">{{.FirstName}} {{.LastName}}</option>
+		{{end}}
 	      </select>
 	    </div> 
 

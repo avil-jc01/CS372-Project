@@ -8,10 +8,41 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
+func SelectAllCustomers(d *sql.DB) []models.Customer {
+	var dbCustomers []models.Customer
+
+	resultRows, err := d.Query("SELECT * FROM customers")
+	if err != nil {
+		panic(err)
+	}
+
+	var cid, zip int
+	var fn, ln, addr, city, st string
+
+	for resultRows.Next() {
+		resultRows.Scan(&cid,&fn,&ln,&addr,&city,&st,&zip)
+
+		resultCustomer := models.Customer{
+			CustomerId: cid,
+			FirstName: fn,
+			LastName: ln,
+			Address: addr,
+			City: city,
+			State: st,
+			Zip: zip,
+		}
+
+		dbCustomers = append(dbCustomers, resultCustomer)
+		
+	}
+
+	return dbCustomers
+	
+}
+
 func SelectAllAutos(d *sql.DB) []models.Vehicle {
 	var dbVehicles []models.Vehicle
 
-	//resultRows stores the return value of the query
 	resultRows, err := d.Query("SELECT * FROM vehicles")
 	if err != nil {
 		panic(err)
@@ -28,7 +59,7 @@ func SelectAllAutos(d *sql.DB) []models.Vehicle {
 			Year: yr,
 			Make: make,
 			Model: model,
-			Price: price,
+			PurchasePrice: price,
 			DateOfSale: date,
 			CustomerId: cid,
 		}

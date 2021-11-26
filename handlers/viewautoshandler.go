@@ -1,16 +1,12 @@
 package handlers
 
 import (
-	"CS372-Project/models"
+	//"CS372-Project/models"
 	"CS372-Project/utils"
 	"database/sql"
-	"fmt"
 	"html/template"
 	"log"
 	"net/http"
-	"strconv"
-	"time"
-
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -34,6 +30,9 @@ func ViewAutosHandler(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Printf("E: Error processing template")
 		}
-		t.Execute(w, nil)
+
+		dbVehicles := utils.SelectAllAutos(database)
+		
+		t.Execute(w, &dbVehicles)
 	}
 }
