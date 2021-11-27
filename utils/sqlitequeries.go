@@ -8,6 +8,31 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
+func SelectCustomerById(cid int, d *sql.DB) models.Customer{
+	var returnCustomer models.Customer
+
+	cidString, _ := strconv.Itoa(cid)
+	resultRow, err := d.Query("SELECT * FROM customers WHERE id = " + cidString)
+
+	var cid, zip int
+	var fn, ln, addr, city, st string
+	for resultRow.Next() {
+		resultRow.Scan(&cid,&fn,&ln,&addr,&city,&st,&zip)
+
+		returnCustomer = models.Customer{
+			CustomerId: cid,
+			FirstName: fn,
+			LastName: ln,
+			Address: addr,
+			City: city,
+			State: st,
+			Zip: zip,
+		}
+	}
+
+	return returnCustomer
+}
+
 func SelectAllCustomers(d *sql.DB) []models.Customer {
 	var dbCustomers []models.Customer
 
@@ -32,7 +57,7 @@ func SelectAllCustomers(d *sql.DB) []models.Customer {
 			Zip: zip,
 		}
 
-		dbCustomers = append(dbCustomers, resultCustomer)
+		dbcustomers = append(dbCustomers, resultCustomer)
 		
 	}
 

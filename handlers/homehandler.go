@@ -10,13 +10,6 @@ import (
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 
-	database, err := sql.Open("sqlite3", "./budget-app.db")
-	if err != nil {
-		panic(err)
-	}
-
-	defer database.Close()
-
 	//building the html template - provide html template path
 	//we add html head and navbar templates here
 	htmlHeadPath := "/templates/head.gohtml"
