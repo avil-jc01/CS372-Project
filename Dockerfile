@@ -13,7 +13,7 @@ RUN go mod download
 COPY . .
 
 #build our binary 
-RUN  --mount=type=cache,target=/root/.cache/go-build go build -v -o /cs372-project
+RUN go build -v -o /cs372-project
 
 #using small ubuntu container for server
 FROM ubuntu as server
