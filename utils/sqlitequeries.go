@@ -4,17 +4,17 @@ import (
 	"CS372-Project/models"
 	"database/sql"
 	"log"
-
+	"strconv"
 	_ "github.com/mattn/go-sqlite3"
 )
 
 func SelectCustomerById(cid int, d *sql.DB) models.Customer{
 	var returnCustomer models.Customer
 
-	cidString, _ := strconv.Itoa(cid)
-	resultRow, err := d.Query("SELECT * FROM customers WHERE id = " + cidString)
+	cidString := strconv.Itoa(cid)
+	resultRow, _ := d.Query("SELECT * FROM customers WHERE id = " + cidString)
 
-	var cid, zip int
+	var  zip int
 	var fn, ln, addr, city, st string
 	for resultRow.Next() {
 		resultRow.Scan(&cid,&fn,&ln,&addr,&city,&st,&zip)
@@ -57,7 +57,7 @@ func SelectAllCustomers(d *sql.DB) []models.Customer {
 			Zip: zip,
 		}
 
-		dbcustomers = append(dbCustomers, resultCustomer)
+		dbCustomers = append(dbCustomers, resultCustomer)
 		
 	}
 
