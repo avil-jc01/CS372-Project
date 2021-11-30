@@ -31,12 +31,15 @@ func main() {
 	//http requests are routed to the endpoint with a multiplexer
 	mux := http.NewServeMux()
 
+	fileserver := http.FileServer(http.Dir("./static/"))
+	
 	hh := http.HandlerFunc(handlers.HomeHandler)
 	aah := http.HandlerFunc(handlers.AddAutoHandler)
 	ach := http.HandlerFunc(handlers.AddCustomerHandler)
 	vah := http.HandlerFunc(handlers.ViewAutosHandler)
 
 	mux.Handle("/", hh)
+	mux.Handle("/static/", http.StripPrefix("/static", fileserver))
 	mux.Handle("/add-auto", aah)
 	mux.Handle("/add-customer", ach)
 	mux.Handle("/view-autos", vah)

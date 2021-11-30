@@ -24,5 +24,8 @@ COPY --from=go-build /cs372-project /
 #copy templates over to ubuntu server container
 COPY templates/ /templates/
 
+#copy static resources over
+COPY static/ /static/
+
 #run the binary on docker run command
 CMD ["/cs372-project"]
