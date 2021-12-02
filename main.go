@@ -37,12 +37,14 @@ func main() {
 	aah := http.HandlerFunc(handlers.AddAutoHandler)
 	ach := http.HandlerFunc(handlers.AddCustomerHandler)
 	vah := http.HandlerFunc(handlers.ViewAutosHandler)
+	gph := http.HandlerFunc(handlers.GeneratePdfHandler)
 
 	mux.Handle("/", hh)
 	mux.Handle("/static/", http.StripPrefix("/static", fileserver))
 	mux.Handle("/add-auto", aah)
 	mux.Handle("/add-customer", ach)
 	mux.Handle("/view-autos", vah)
+	mux.Handle("/generate-pdf", gph)
 
 	//start the webserver
 	http.ListenAndServe(":8080", mux)

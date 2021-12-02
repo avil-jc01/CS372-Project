@@ -4,7 +4,7 @@ import (
 	"CS372-Project/models"
 	"CS372-Project/utils"
 	"database/sql"
-	"fmt"
+	//	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -66,7 +66,13 @@ func AddAutoHandler(w http.ResponseWriter, r *http.Request) {
 			panic(err)
 		}
 
-		fmt.Println(DateOfSale)
+		customerId, err := strconv.ParseInt(r.FormValue("customer"), 10, 32)
+		if err != nil {
+			panic(err)
+		}
+
+		
+
 		newVehicle := models.Vehicle{
 			VIN:           r.FormValue("vin"),
 			Year:          int(Year),
@@ -74,6 +80,7 @@ func AddAutoHandler(w http.ResponseWriter, r *http.Request) {
 			Model:         r.FormValue("model"),
 			PurchasePrice: int(PurchasePrice),
 			DateOfSale:    DateOfSale.String(),
+			CustomerId:    int(customerId),
 		}
 		err = utils.InsertAuto(newVehicle, database)
 		if err != nil {
