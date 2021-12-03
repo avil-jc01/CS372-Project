@@ -30,10 +30,11 @@ func CreatePdf(v models.Vehicle, c models.Customer) (string, error) {
 		log.Print(err.Error())
 		return "", err
 	}
-
-	pdf.SetX(35)
+  
+	pdf.SetX(48)
 	pdf.SetY(155)
-	pdf.Cell(nil, v.VIN)
+	spacedVin := SpacedVin(v.VIN)
+	pdf.Cell(nil, spacedVin)
 
 	pdf.SetX(65)
 	pdf.SetY(195)
