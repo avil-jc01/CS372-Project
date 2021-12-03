@@ -30,5 +30,8 @@ COPY static/ /static/
 #copy pdf resources over
 COPY pdf/ /pdf/
 
+#ensure pdfout dir exists
+RUN mkdir -p /pdfout
+
 #run the binary on docker run command
 CMD ["/cs372-project"]
