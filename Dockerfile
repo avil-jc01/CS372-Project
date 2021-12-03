@@ -27,5 +27,8 @@ COPY templates/ /templates/
 #copy static resources over
 COPY static/ /static/
 
+#copy pdf resources over
+COPY pdf/ /pdf/
+
 #run the binary on docker run command
 CMD ["/cs372-project"]

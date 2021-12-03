@@ -71,7 +71,8 @@ func AddAutoHandler(w http.ResponseWriter, r *http.Request) {
 			panic(err)
 		}
 
-		
+		yr, mo, da := DateOfSale.Date()
+		vehDate := strconv.Itoa(int(mo)) + "/" + strconv.Itoa(da) + "/" + strconv.Itoa(yr) 
 
 		newVehicle := models.Vehicle{
 			VIN:           r.FormValue("vin"),
@@ -79,7 +80,7 @@ func AddAutoHandler(w http.ResponseWriter, r *http.Request) {
 			Make:          r.FormValue("make"),
 			Model:         r.FormValue("model"),
 			PurchasePrice: int(PurchasePrice),
-			DateOfSale:    DateOfSale.String(),
+			DateOfSale:    vehDate,
 			CustomerId:    int(customerId),
 		}
 		err = utils.InsertAuto(newVehicle, database)

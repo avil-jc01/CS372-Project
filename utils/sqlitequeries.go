@@ -33,6 +33,32 @@ func SelectCustomerById(cid int, d *sql.DB) models.Customer{
 	return returnCustomer
 }
 
+func SelectVehicleById(vid int, d *sql.DB) models.Vehicle{
+	var returnVehicle models.Vehicle
+
+	vidString := strconv.Itoa(vid)
+	resultRow, _ := d.Query("SELECT * FROM vehicles WHERE id = " + vidString)
+
+	var year, price, cid int
+	var vin, make, model, date string
+	for resultRow.Next() {
+		resultRow.Scan(&vid,&vin,&year,&make,&model,&price,&date, &cid)
+
+		returnVehicle = models.Vehicle{
+			VehicleId: vid,
+			VIN: vin,
+			Year: year,
+			Make: make,
+			Model: model,
+			PurchasePrice: price,
+			DateOfSale: date,
+			CustomerId: cid,
+		}
+	}
+
+	return returnVehicle
+}
+
 func SelectAllCustomers(d *sql.DB) []models.Customer {
 	var dbCustomers []models.Customer
 
