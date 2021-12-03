@@ -84,11 +84,11 @@ func AddCustomerHandler(w http.ResponseWriter, r *http.Request) {
 		err = utils.InsertCustomer(newCustomer, database)
 
 		if err != nil {
-			log.Printf("E: Error inserting customer",newCustomer)
+			log.Printf("E: Error inserting customer", newCustomer)
 			log.Printf(err.Error())
 		}
-		
-		http.Redirect(w, r, "/", 302)
+
+		http.Redirect(w, r, "/", http.StatusFound)
 
 	}
 }

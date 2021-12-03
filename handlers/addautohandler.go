@@ -4,7 +4,6 @@ import (
 	"CS372-Project/models"
 	"CS372-Project/utils"
 	"database/sql"
-	//	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -35,11 +34,11 @@ func AddAutoHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		dbCustomers := utils.SelectAllCustomers(database)
-		
+
 		t.Execute(w, &dbCustomers)
 	}
 	if r.Method == "POST" {
-		log.Printf("D: HTTP POST on /add-customer")
+		log.Printf("D: HTTP POST on /add-auto")
 		r.ParseForm()
 		var err error
 		var DateOfSale time.Time
@@ -72,7 +71,9 @@ func AddAutoHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		yr, mo, da := DateOfSale.Date()
-		vehDate := strconv.Itoa(int(mo)) + "/" + strconv.Itoa(da) + "/" + strconv.Itoa(yr) 
+
+		//saving date in necessary format mm/dd/yyyy
+		vehDate := strconv.Itoa(int(mo)) + "/" + strconv.Itoa(da) + "/" + strconv.Itoa(yr)
 
 		newVehicle := models.Vehicle{
 			VIN:           r.FormValue("vin"),

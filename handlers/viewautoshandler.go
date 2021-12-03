@@ -1,13 +1,12 @@
 package handlers
 
 import (
-	//"CS372-Project/models"
 	"CS372-Project/utils"
 	"database/sql"
+	_ "github.com/mattn/go-sqlite3"
 	"html/template"
 	"log"
 	"net/http"
-	_ "github.com/mattn/go-sqlite3"
 )
 
 func ViewAutosHandler(w http.ResponseWriter, r *http.Request) {
@@ -22,6 +21,7 @@ func ViewAutosHandler(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method == "GET" {
 		log.Printf("D: HTTP GET on /view-autos")
+
 		htmlHeadPath := "/templates/head.gohtml"
 		navBarPath := "/templates/navbar.gohtml"
 		templatePath := "/templates/view-autos.gohtml"
@@ -32,7 +32,7 @@ func ViewAutosHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		dbVehicles := utils.SelectAllAutos(database)
-		
+
 		t.Execute(w, &dbVehicles)
 	}
 }
