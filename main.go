@@ -28,7 +28,6 @@ func main() {
 	vehDef := "(id INTEGER PRIMARY KEY, vin TEXT, year INTEGER, make TEXT, model TEXT, purchase_price FLOAT, date_of_sale TEXT, customer_id INTEGER)"
 	utils.CreateTable(vehName, vehDef, database)
 
-	//http requests are routed to the endpoint with a multiplexer
 	mux := http.NewServeMux()
 
 	fileserver := http.FileServer(http.Dir("./static/"))
@@ -40,13 +39,13 @@ func main() {
 	gph := http.HandlerFunc(handlers.GeneratePdfHandler)
 
 	mux.Handle("/", hh)
+	//allows us to reference as src="/static/"
 	mux.Handle("/static/", http.StripPrefix("/static", fileserver))
 	mux.Handle("/add-auto", aah)
 	mux.Handle("/add-customer", ach)
 	mux.Handle("/view-autos", vah)
 	mux.Handle("/generate-pdf", gph)
 
-	//start the webserver
 	http.ListenAndServe(":8080", mux)
 
 }

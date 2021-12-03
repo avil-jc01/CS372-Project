@@ -151,18 +151,17 @@ func InsertAuto(v models.Vehicle, d *sql.DB) error {
 	if err != nil {
 		panic(err)
 	}
-	log.Printf("D: Added %d  to vehicles table", res)
+	log.Printf("D: Added %d to vehicles table", res)
 	return nil
 
 }
 
 func CreateTable(name string, definition string, d *sql.DB) {
-	//create table - preparing statement for execution
 	statement, err := d.Prepare("CREATE TABLE IF NOT EXISTS " + name + " " + definition)
 	if err != nil {
 		panic(err)
 	}
-	//run the statement prepared above
+
 	_, err = statement.Exec()
 	if err != nil {
 		panic(err)

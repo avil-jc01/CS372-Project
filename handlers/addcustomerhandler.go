@@ -88,7 +88,7 @@ func AddCustomerHandler(w http.ResponseWriter, r *http.Request) {
 			log.Printf(err.Error())
 		}
 
-		http.Redirect(w, r, "/", 302)
+		http.Redirect(w, r, "/", http.StatusFound)
 
 	}
 }
