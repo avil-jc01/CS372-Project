@@ -43,8 +43,6 @@ func GeneratePdfHandler(w http.ResponseWriter, r *http.Request) {
 			panic(err)
 		}
 
-		log.Printf(pdfPath)
-
 		http.ServeFile(w, r, string(pdfPath))
 		
 	}
