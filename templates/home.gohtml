@@ -1,32 +1,79 @@
 <!DOCTYPE HTML>
 <html>
-
   <head>
      {{template "html_head"}}
     <title>Auto-Form Filler - CS372</title>
+    <style>
+      body {
+        color: #e0b360;
+        background-color: #101724;
+        font-size: 1.5rem;
+        font-family: sans-serif;
 
+      }
+
+      nav {
+        font-size: 1rem;
+        background-color: #283857;
+        border-radius: 25px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      #big-link:hover {
+        background-color: #101724;
+        border-radius: 25px; 
+      }
+
+      a, a:hover{
+        color: #e0b360;
+        text-decoration: none;
+      }
+
+      li:hover {
+        background-color: #101724;
+        border-radius: 25px;
+      }
+
+      #title {
+        font-size: 4rem;
+        background-color: #283857;
+        border-radius: 25px;
+      }
+
+      #car {
+        display: block;
+        width: 70%;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
   </head>
   
   
-  <body style="background-color: #f0f0f0;">
+  <body>
 
     {{template "navbar"}}
     
     <div class="container">
       <div id="page-title" class="text-center mt-4">
-	<h1>
-	  Auto-Form Filler - Home
-	</h1>
+        <h1 id="title">
+          Auto-Form Filler - Home
+        </h1>
       </div>
       
       <div class="row m-3 p-2">
-	<p>
-	  Auto-Form Filler is a utility to automatically generate the necessary paperwork when selling automobiles. 
-	</p>
-	<p>
-	  Please use the options above to 'Add Auto' and/or 'Add Customer'. To generate and print the appropriate paperwork, use 'View Autos' and select the appropriate auto. 
-	</p>
+        <p>
+          The Auto-Form Filler is a utility used to automatically generate the necessary paperwork when selling automobiles. 
+        </p>
+        <p>
+          Please use the options above to 'Add Auto' and/or 'Add Customer'. To generate and print the appropriate paperwork, use 'View Autos' and select the appropriate auto. 
+        </p>
       </div>
     </div>
+    <img src='/static/car1.png' id="car">
   </body>
 </html>
