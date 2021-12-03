@@ -3,37 +3,37 @@ package utils
 import (
 	"CS372-Project/models"
 	"database/sql"
+	_ "github.com/mattn/go-sqlite3"
 	"log"
 	"strconv"
-	_ "github.com/mattn/go-sqlite3"
 )
 
-func SelectCustomerById(cid int, d *sql.DB) models.Customer{
+func SelectCustomerById(cid int, d *sql.DB) models.Customer {
 	var returnCustomer models.Customer
 
 	cidString := strconv.Itoa(cid)
 	resultRow, _ := d.Query("SELECT * FROM customers WHERE id = " + cidString)
 
-	var  zip int
+	var zip int
 	var fn, ln, addr, city, st string
 	for resultRow.Next() {
-		resultRow.Scan(&cid,&fn,&ln,&addr,&city,&st,&zip)
+		resultRow.Scan(&cid, &fn, &ln, &addr, &city, &st, &zip)
 
 		returnCustomer = models.Customer{
 			CustomerId: cid,
-			FirstName: fn,
-			LastName: ln,
-			Address: addr,
-			City: city,
-			State: st,
-			Zip: zip,
+			FirstName:  fn,
+			LastName:   ln,
+			Address:    addr,
+			City:       city,
+			State:      st,
+			Zip:        zip,
 		}
 	}
 
 	return returnCustomer
 }
 
-func SelectVehicleById(vid int, d *sql.DB) models.Vehicle{
+func SelectVehicleById(vid int, d *sql.DB) models.Vehicle {
 	var returnVehicle models.Vehicle
 
 	vidString := strconv.Itoa(vid)
@@ -42,17 +42,17 @@ func SelectVehicleById(vid int, d *sql.DB) models.Vehicle{
 	var year, price, cid int
 	var vin, make, model, date string
 	for resultRow.Next() {
-		resultRow.Scan(&vid,&vin,&year,&make,&model,&price,&date, &cid)
+		resultRow.Scan(&vid, &vin, &year, &make, &model, &price, &date, &cid)
 
 		returnVehicle = models.Vehicle{
-			VehicleId: vid,
-			VIN: vin,
-			Year: year,
-			Make: make,
-			Model: model,
+			VehicleId:     vid,
+			VIN:           vin,
+			Year:          year,
+			Make:          make,
+			Model:         model,
 			PurchasePrice: price,
-			DateOfSale: date,
-			CustomerId: cid,
+			DateOfSale:    date,
+			CustomerId:    cid,
 		}
 	}
 
@@ -71,24 +71,24 @@ func SelectAllCustomers(d *sql.DB) []models.Customer {
 	var fn, ln, addr, city, st string
 
 	for resultRows.Next() {
-		resultRows.Scan(&cid,&fn,&ln,&addr,&city,&st,&zip)
+		resultRows.Scan(&cid, &fn, &ln, &addr, &city, &st, &zip)
 
 		resultCustomer := models.Customer{
 			CustomerId: cid,
-			FirstName: fn,
-			LastName: ln,
-			Address: addr,
-			City: city,
-			State: st,
-			Zip: zip,
+			FirstName:  fn,
+			LastName:   ln,
+			Address:    addr,
+			City:       city,
+			State:      st,
+			Zip:        zip,
 		}
 
 		dbCustomers = append(dbCustomers, resultCustomer)
-		
+
 	}
 
 	return dbCustomers
-	
+
 }
 
 func SelectAllAutos(d *sql.DB) []models.Vehicle {
@@ -103,25 +103,23 @@ func SelectAllAutos(d *sql.DB) []models.Vehicle {
 	var vin, make, model, date string
 
 	for resultRows.Next() {
-		resultRows.Scan(&vid,&vin,&yr,&make,&model,&price,&date,&cid)
+		resultRows.Scan(&vid, &vin, &yr, &make, &model, &price, &date, &cid)
 		readVehicle := models.Vehicle{
-			VehicleId: vid,
-			VIN: vin,
-			Year: yr,
-			Make: make,
-			Model: model,
+			VehicleId:     vid,
+			VIN:           vin,
+			Year:          yr,
+			Make:          make,
+			Model:         model,
 			PurchasePrice: price,
-			DateOfSale: date,
-			CustomerId: cid,
+			DateOfSale:    date,
+			CustomerId:    cid,
 		}
 
 		dbVehicles = append(dbVehicles, readVehicle)
 	}
 
 	return dbVehicles
-	
-	
-	
+
 }
 
 func InsertCustomer(c models.Customer, d *sql.DB) error {

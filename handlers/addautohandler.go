@@ -35,7 +35,7 @@ func AddAutoHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		dbCustomers := utils.SelectAllCustomers(database)
-		
+
 		t.Execute(w, &dbCustomers)
 	}
 	if r.Method == "POST" {
@@ -72,7 +72,7 @@ func AddAutoHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		yr, mo, da := DateOfSale.Date()
-		vehDate := strconv.Itoa(int(mo)) + "/" + strconv.Itoa(da) + "/" + strconv.Itoa(yr) 
+		vehDate := strconv.Itoa(int(mo)) + "/" + strconv.Itoa(da) + "/" + strconv.Itoa(yr)
 
 		newVehicle := models.Vehicle{
 			VIN:           r.FormValue("vin"),

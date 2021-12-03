@@ -32,7 +32,7 @@ func main() {
 	mux := http.NewServeMux()
 
 	fileserver := http.FileServer(http.Dir("./static/"))
-	
+
 	hh := http.HandlerFunc(handlers.HomeHandler)
 	aah := http.HandlerFunc(handlers.AddAutoHandler)
 	ach := http.HandlerFunc(handlers.AddCustomerHandler)

@@ -16,7 +16,7 @@ import (
 
 func GeneratePdfHandler(w http.ResponseWriter, r *http.Request) {
 	database, err := sql.Open("sqlite3", "./cs372-app.db")
-	
+
 	if err != nil {
 		panic(err)
 	}
@@ -30,12 +30,11 @@ func GeneratePdfHandler(w http.ResponseWriter, r *http.Request) {
 		urlVehicleId := urlVehicleArgs[0]
 		urlCustomerId := urlCustomerArgs[0]
 
-		vehicleInt , _ := strconv.Atoi(urlVehicleId)
+		vehicleInt, _ := strconv.Atoi(urlVehicleId)
 		customerInt, _ := strconv.Atoi(urlCustomerId)
-		
+
 		urlVehicle := utils.SelectVehicleById(vehicleInt, database)
 		urlCustomer := utils.SelectCustomerById(customerInt, database)
-
 
 		pdfPath, err := utils.CreatePdf(urlVehicle, urlCustomer)
 
@@ -46,6 +45,6 @@ func GeneratePdfHandler(w http.ResponseWriter, r *http.Request) {
 		log.Printf(pdfPath)
 
 		http.ServeFile(w, r, string(pdfPath))
-		
+
 	}
 }
