@@ -3,7 +3,6 @@ package handlers
 import (
 	"CS372-Project/utils"
 	"database/sql"
-	"log"
 	"net/http"
 	"strconv"
 
