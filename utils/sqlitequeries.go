@@ -3,9 +3,10 @@ package utils
 import (
 	"CS372-Project/models"
 	"database/sql"
-	_ "github.com/mattn/go-sqlite3"
 	"log"
 	"strconv"
+
+	_ "github.com/mattn/go-sqlite3"
 )
 
 func SelectCustomerById(cid int, d *sql.DB) models.Customer {
@@ -167,4 +168,17 @@ func CreateTable(name string, definition string, d *sql.DB) {
 		panic(err)
 	}
 	log.Printf("D: Successfully created (if not exists) table %s\n", name)
+}
+
+func DeleteAuto(VehicleId, CustomerId int, d *sql.DB) error {
+	statement, err := d.Prepare("DELETE FROM vehicles WHERE id = " + strconv.Itoa(VehicleId) + " AND customer_id = " + strconv.Itoa(CustomerId))
+	if err != nil {
+		return err
+	}
+	_, err = statement.Exec()
+	if err != nil {
+		return err
+	}
+	log.Printf("D: Successfully deleted vehicle #%d\n", VehicleId)
+	return nil
 }
