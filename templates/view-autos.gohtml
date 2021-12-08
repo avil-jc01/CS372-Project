@@ -33,12 +33,12 @@
     <div class="container">
 
       <div id="page-title" class="text-center mt-4">
-	<h1>
-          View Autos
+	<h1 id="title">
+          View Automobiles & Paperwork
 	</h1>
       </div>
       
-      <div class="row">
+      <div class="row m-3 p-2">
 
 	<div class="card-columns mx-auto">
 	  {{range .}}
@@ -50,8 +50,10 @@
 	      <div class="mb-3">
 	      {{.Year}} - {{.Make}} {{.Model}}
 	      </div>
-	      <a href="/generate-pdf?vehicleId={{.VehicleId}}&customerId={{.CustomerId}}" class="button btn btn-secondary">Paperwork</a>
-              <button onclick="deleteData({{.VehicleId}},{{.CustomerId}})",type="button" class="button btn btn-danger" style="margin-left:30%">Delete</button>
+	      <div class="m-2">
+		<a href="/generate-pdf?vehicleId={{.VehicleId}}&customerId={{.CustomerId}}" class="button btn btn-secondary">Paperwork</a>
+		<button onclick="deleteData({{.VehicleId}},{{.CustomerId}})",type="button" class="button btn btn-danger" style="margin-left:30%">Delete</button>
+	      </div>
 	    </div>
 	  </div>
 	  {{end}}
