@@ -65,7 +65,8 @@
         referrerPolicy: 'no-referrer',
         body: null
       }).then(function(response){
-      console.log(response);
+	  console.log(response);
+	  window.location.href = response.url;
       })
 
     };
