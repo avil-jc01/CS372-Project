@@ -4,9 +4,10 @@ import (
 	"CS372-Project/handlers"
 	"CS372-Project/utils"
 	"database/sql"
-	_ "github.com/mattn/go-sqlite3"
 	"log"
 	"net/http"
+
+	_ "github.com/mattn/go-sqlite3"
 )
 
 func main() {
@@ -37,6 +38,7 @@ func main() {
 	ach := http.HandlerFunc(handlers.AddCustomerHandler)
 	vah := http.HandlerFunc(handlers.ViewAutosHandler)
 	gph := http.HandlerFunc(handlers.GeneratePdfHandler)
+	dah := http.HandlerFunc(handlers.DeleteAutoHandler)
 
 	mux.Handle("/", hh)
 	//allows us to reference as src="/static/"
@@ -45,6 +47,7 @@ func main() {
 	mux.Handle("/add-customer", ach)
 	mux.Handle("/view-autos", vah)
 	mux.Handle("/generate-pdf", gph)
+	mux.Handle("/delete-auto", dah)
 
 	http.ListenAndServe(":8080", mux)
 

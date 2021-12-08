@@ -50,7 +50,27 @@
     </style>
       
   </head>
-  
+  <script>
+    const deleteData = async (vehicleId, customerId ) =>{
+      const response = await fetch(`/delete-auto?vehicleId=${vehicleId}&customerId=${customerId}`, {
+        method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+        'Content-Type': "text/html; charset=UTF-8"
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: 'follow', // manual, *follow, error
+        referrerPolicy: 'no-referrer',
+        body: null
+      }).then(function(response){
+	  console.log(response);
+	  window.location.href = response.url;
+      })
+
+    };
+  </script>
   <body>
     
     {{template "navbar"}}
@@ -75,7 +95,8 @@
 	      <div class="mb-3">
 	      {{.Year}} - {{.Make}} {{.Model}}
 	      </div>
-	      <a class="card-link" href="/generate-pdf?vehicleId={{.VehicleId}}&customerId={{.CustomerId}}">Paperwork</a>  
+	      <a class="card-link" href="/generate-pdf?vehicleId={{.VehicleId}}&customerId={{.CustomerId}}">Paperwork</a>
+        <button onclick="deleteData({{.VehicleId}},{{.CustomerId}})",type="button" class="btn btn-danger">Delete</button>
 	    </div>
 	  </div>
 	  {{end}}
@@ -83,6 +104,6 @@
 
 	</div>
 	
-      </div>
+  </div>
   </body>
 </html>
