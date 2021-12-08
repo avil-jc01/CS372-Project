@@ -1,3 +1,62 @@
 div {
 
 }
+body {
+    color: #e0b360;
+    background-color: #101724;
+    font-size: 1.5rem;
+    font-family: sans-serif;    
+}
+
+#car {
+    
+}
+
+nav {
+    font-size: 1rem;
+    background-color: #283857;
+    border-radius: 25px;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+#big-link:hover {
+    background-color: #101724;
+    border-radius: 25px; 
+}
+
+a, a:hover{
+    color: #e0b360;
+    text-decoration: none;
+}
+
+li:hover {
+    background-color: #101724;
+    border-radius: 25px;
+}
+
+#title {
+    font-size: 4rem;
+    background-color: #283857;
+    border-radius: 25px;
+}
+
+input[type=text], input[type=text]:focus {
+    background-color: #283857;
+    border: 1px solid #e0b360;
+    color: #e0b360;
+}
+
+button:hover {
+    background-color: #101724 !important;
+}
+
+.card-header {
+    background-color: #101724;
+}
+
+.card-body {
+    background-color: #283857;
+}

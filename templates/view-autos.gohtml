@@ -3,52 +3,7 @@
   <head>
     {{template "html_head"}}
     <title>View Automobiles</title>
-    <style>
-      body {
-        color: #e0b360;
-        background-color: #101724;
-        font-size: 1.5rem;
-        font-family: sans-serif;
 
-      }
-
-      .card {
-	  color: #666600;
-      }
-
-      nav {
-        font-size: 1rem;
-        background-color: #283857;
-        border-radius: 25px;
-      }
-
-      h1 {
-        font-size: 2rem;
-      }
-
-      #big-link:hover {
-        background-color: #101724;
-        border-radius: 25px; 
-      }
-
-      a, a:hover{
-        color: #e0b360;
-        text-decoration: none;
-      }
-
-      li:hover {
-        background-color: #101724;
-        border-radius: 25px;
-      }
-
-      #title {
-        font-size: 4rem;
-        background-color: #283857;
-        border-radius: 25px;
-      }
-
-    </style>
-      
   </head>
   <script>
     const deleteData = async (vehicleId, customerId ) =>{
@@ -78,12 +33,12 @@
     <div class="container">
 
       <div id="page-title" class="text-center mt-4">
-	<h1>
-          View Autos
+	<h1 id="title">
+          View Automobiles & Paperwork
 	</h1>
       </div>
       
-      <div class="row">
+      <div class="row m-3 p-2">
 
 	<div class="card-columns mx-auto">
 	  {{range .}}
@@ -95,8 +50,10 @@
 	      <div class="mb-3">
 	      {{.Year}} - {{.Make}} {{.Model}}
 	      </div>
-	      <a class="card-link" href="/generate-pdf?vehicleId={{.VehicleId}}&customerId={{.CustomerId}}">Paperwork</a>
-        <button onclick="deleteData({{.VehicleId}},{{.CustomerId}})",type="button" class="btn btn-danger">Delete</button>
+	      <div class="m-2">
+		<a href="/generate-pdf?vehicleId={{.VehicleId}}&customerId={{.CustomerId}}" class="button btn btn-secondary">Paperwork</a>
+		<button onclick="deleteData({{.VehicleId}},{{.CustomerId}})",type="button" class="button btn btn-danger" style="margin-left:30%">Delete</button>
+	      </div>
 	    </div>
 	  </div>
 	  {{end}}
