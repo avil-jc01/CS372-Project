@@ -37,29 +37,29 @@ func CreatePdf(v models.Vehicle, c models.Customer) (string, error) {
 	pdf.Cell(nil, spacedVin)
 
 	pdf.SetX(65)
-	pdf.SetY(195)
+	pdf.SetY(198)
 	yearStr := strconv.Itoa(v.Year)
 	pdf.Cell(nil, yearStr)
 
 	pdf.SetX(250)
-	pdf.SetY(195)
+	pdf.SetY(198)
 	pdf.Cell(nil, v.Make)
 
 	pdf.SetX(415)
-	pdf.SetY(195)
+	pdf.SetY(198)
 	pdf.Cell(nil, v.Model)
 
 	pdf.SetX(105)
-	pdf.SetY(325)
+	pdf.SetY(330)
 	priceStr := strconv.Itoa(v.PurchasePrice)
 	pdf.Cell(nil, priceStr)
 
 	pdf.SetX(400)
-	pdf.SetY(325)
+	pdf.SetY(330)
 	pdf.Cell(nil, v.DateOfSale)
 
 	pdf.SetX(50)
-	pdf.SetY(675)
+	pdf.SetY(678)
 	buyerName := c.LastName + ", " + c.FirstName
 	pdf.Cell(nil, buyerName)
 

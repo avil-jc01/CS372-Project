@@ -3,63 +3,6 @@
   <head>
     {{template "html_head"}}
     <title>New Customer - Add Customer</title>
-    <style>
-      body {
-        color: #e0b360;
-        background-color: #101724;
-        font-size: 1.5rem;
-        font-family: sans-serif;
-
-      }
-
-      nav {
-        font-size: 1rem;
-        background-color: #283857;
-        border-radius: 25px;
-      }
-
-      h1 {
-        font-size: 2rem;
-      }
-
-      #big-link:hover {
-        background-color: #101724;
-        border-radius: 25px; 
-      }
-
-      a, a:hover{
-        color: #e0b360;
-        text-decoration: none;
-      }
-
-      li:hover {
-        background-color: #101724;
-        border-radius: 25px;
-      }
-
-      #title {
-        font-size: 4rem;
-        background-color: #283857;
-        border-radius: 25px;
-      }
-
-	  input[type=text], input[type=text]:focus {
-		  background-color: #283857;
-		  border: 1px solid #e0b360;
-		  color: #e0b360;
-	  }
-
-	  button {
-		  background-color: #283857 !important;
-		  border: 1px solid #e0b360 !important; 
-		  color: #e0b360 !important;
-	  }
-
-	  button:hover {
-		  background-color: #101724 !important;
-	  }
-
-    </style>
   </head>
   
   <body>
@@ -68,56 +11,57 @@
     
     <div class="container p-1">
       <div id="page-title" class="text-center mt-4">
-		<h1 id="title">
-			New Customer Form
-		</h1>
+	<h1 id="title">
+	  New Customer Form
+	</h1>
       </div>
       
       <div class="text-center mt-4">
-
-		<p>
-		Please fill in the information below
-		</p>
+	<p>
+	  Please fill in the information below. All fields are required. After you create a customer, create an auto to generate paperwork.
+	</p>
       </div>
       
-	<div class="row justify-content-center m-3 p-2">
-	  <form class="form" action="/add-customer" method="post">
-	    <div class="form-label-group mb-1">
-	      <label for="first_name">First Name: </label>
-	      <input type="text" name="first_name" id="first_name" class="form-control">
-	    </div>
-
-	    <div class="form-label-group mb-1">
-	      <label for="last_name">Last Name: </label>
-	      <input type="text" name="last_name" id="last_name" class="form-control">
-	    </div>
-
-	    <div class="form-label-group mb-1">
-	      <label for="address">Street Address: </label>
-	      <input type="text" name="address" id="address" class="form-control">
-	    </div>
-
-	    <div class="form-label-group mb-1">
-	      <label for="city">City: </label>
-	      <input type="text" name="city" id="city" class="form-control">
-	    </div>
-
-	    <div class="form-label-group mb-1">
-	      <label for="state">State: </label>
-	      <input type="text" name="state" id="state" class="form-control">	    
-	    </div>
-
-	    <div class="form-label-group mb-1">
-	      <label for="zip">Zip Code:</label>
-	      <input type="text" name="zip" id="zip" class="form-control">
-	    </div>
-
-	    <button class="btn btn-primary m-3" type="submit">Add Customer</button>
-	  </form>
-	</div>
+      <div class="row justify-content-center m-3 p-2">
 	
+	<form class="form w-25" action="/add-customer" method="post">
+
+	  <div class="form-label-group mb-1">
+	    <label for="first_name">First Name: </label>
+	    <input type="text" name="first_name" id="first_name" class="form-control" required>
+	  </div>
+
+	  <div class="form-label-group mb-1">
+	    <label for="last_name">Last Name: </label>
+	    <input type="text" name="last_name" id="last_name" class="form-control" required>
+	  </div>
+
+	  <div class="form-label-group mb-1">
+	    <label for="address">Street Address: </label>
+	    <input type="text" name="address" id="address" class="form-control" required>
+	  </div>
+
+	  <div class="form-label-group mb-1">
+	    <label for="city">City: </label>
+	    <input type="text" name="city" id="city" class="form-control" required>
+	  </div>
+
+	  <div class="form-label-group mb-1">
+	    <label for="state">State: </label>
+	    <input type="text" name="state" id="state" class="form-control" required>   
+	  </div>
+
+	  <div class="form-label-group mb-1">
+	    <label for="zip">Zip Code:</label>
+	    <input type="text" name="zip" id="zip" class="form-control" required>
+	  </div>
+
+	  <button class="btn btn-primary m-3" type="submit">Add Customer</button>
+	</form>
       </div>
+      
     </div>
-  </body>
+</div>
+</body>
 </html>
 
